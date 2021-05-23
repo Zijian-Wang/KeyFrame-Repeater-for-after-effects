@@ -1,9 +1,11 @@
 (function(thisObj){
 
-    createPannel();
+    //createPannel();
 
-    function createPannel(){
-        var panelGlobal = this;
+    var panelGlobal = thisObj;
+
+    //function createPannel(){
+        
 
         /*
         Code for Import https://scriptui.joonas.me — (Triple click to select): 
@@ -13,32 +15,23 @@
         // ROTATIONREPEATERWINDOW
         // ======================
         var RotationRepeaterWindow = (panelGlobal instanceof Panel) ? panelGlobal : new Window("palette", undefined, undefined, {su1PanelCoordinates: true, resizeable: true}); 
-            if ( !(panelGlobal instanceof Panel) ) RotationRepeaterWindow.text = "Rotation Repeater"; 
-            RotationRepeaterWindow.preferredSize.width = 300; 
+            if ( !(panelGlobal instanceof Panel) ) RotationRepeaterWindow.text = "Rotation Repeater";  
             RotationRepeaterWindow.orientation = "column"; 
-            RotationRepeaterWindow.alignChildren = ["fill","center"]; 
+            RotationRepeaterWindow.alignChildren = ["Left","center"]; 
             RotationRepeaterWindow.spacing = 10; 
             RotationRepeaterWindow.margins = 16; 
 
-        // ROTATIONREPEATE
-        // ===============
-        var RotationRepeate = RotationRepeaterWindow.add("panel", undefined, undefined, {name: "RotationRepeate", su1PanelCoordinates: true}); 
-            RotationRepeate.text = "Rotation Repeat （重复旋转关键帧）"; 
-            RotationRepeate.orientation = "row"; 
-            RotationRepeate.alignChildren = ["left","top"]; 
-            RotationRepeate.spacing = 40; 
-            RotationRepeate.margins = 10; 
-
         // KEY1
         // ====
-        var key1 = RotationRepeate.add("group", undefined, {name: "key1"}); 
+        var key1 = RotationRepeaterWindow.add("group", undefined, {name: "key1"}); 
             key1.orientation = "row"; 
             key1.alignChildren = ["left","center"]; 
             key1.spacing = 10; 
             key1.margins = 0; 
 
         var statictext1 = key1.add("statictext", undefined, undefined, {name: "statictext1"}); 
-            statictext1.text = "Key 1: "; 
+            statictext1.text = "首尾帧数值: "; 
+            statictext1.helpTip = "第一关键帧数值"; 
             statictext1.alignment = ["left","fill"]; 
 
         var key1Val = key1.add('edittext {properties: {name: "key1Val"}}'); 
@@ -49,14 +42,15 @@
 
         // KEY2
         // ====
-        var key2 = RotationRepeate.add("group", undefined, {name: "key2"}); 
+        var key2 = RotationRepeaterWindow.add("group", undefined, {name: "key2"}); 
             key2.orientation = "row"; 
             key2.alignChildren = ["left","center"]; 
             key2.spacing = 10; 
             key2.margins = 0; 
 
         var statictext2 = key2.add("statictext", undefined, undefined, {name: "statictext2"}); 
-            statictext2.text = "Key 2: "; 
+            statictext2.text = "中间帧数值: "; 
+            statictext2.helpTip = "中间关键帧数值"; 
             statictext2.alignment = ["left","fill"]; 
 
         var key2Val = key2.add('edittext {properties: {name: "key2Val"}}'); 
@@ -67,25 +61,25 @@
 
         // FREQ
         // ====
-        var freq = RotationRepeate.add("group", undefined, {name: "freq"}); 
+        var freq = RotationRepeaterWindow.add("group", undefined, {name: "freq"}); 
             freq.orientation = "row"; 
             freq.alignChildren = ["center","center"]; 
             freq.spacing = 10; 
             freq.margins = 0; 
 
         var statictext3 = freq.add("statictext", undefined, undefined, {name: "statictext3"}); 
-            statictext3.helpTip = "频率（按秒数计算）"; 
-            statictext3.text = "Frequency: "; 
+            statictext3.helpTip = "频率（按帧数计算）"; 
+            statictext3.text = "频率（帧）: "; 
             statictext3.alignment = ["center","fill"]; 
 
         var freq1 = freq.add('edittext {properties: {name: "freq1"}}'); 
-            freq1.text = "0.1"; 
+            freq1.text = "1"; 
             freq1.preferredSize.width = 50; 
             freq1.alignment = ["center","fill"]; 
 
         // ROTATIONREPEATE
         // ===============
-        var holdFrame = RotationRepeate.add("checkbox", undefined, undefined, {name: "holdFrame"}); 
+        var holdFrame = RotationRepeaterWindow.add("checkbox", undefined, undefined, {name: "holdFrame"}); 
             holdFrame.text = "Hold Keyframe"; 
             holdFrame.alignment = ["left","center"]; 
 
@@ -102,7 +96,6 @@
         // ITEM REFERENCE LIST ( Info: http://jongware.mit.edu/Sui/index_1.html ) 
         RotationRepeaterWindow.items = { 
         RotationRepeaterWindow: RotationRepeaterWindow, // palette
-        RotationRepeate: RotationRepeate, // panel
         key1: key1, // group
         key1Val: key1Val, // edittext
         key2: key2, // group
@@ -112,7 +105,7 @@
         holdFrame: holdFrame, // checkbox
         applyBttn: applyBttn // button
         };
-        RotationRepeaterWindow.itemsArray = [RotationRepeaterWindow, RotationRepeate, key1, key1Val, key2, key2Val, freq, freq1, holdFrame, applyBttn];
+        RotationRepeaterWindow.itemsArray = [RotationRepeaterWindow, RotationRepeaterWindow, key1, key1Val, key2, key2Val, freq, freq1, holdFrame, applyBttn];
 
         var val1 = Number(key1Val.text);
         var val2 = Number(key2Val.text);
@@ -127,25 +120,34 @@
             rotationRepe(val1, val2, frequency, holdFrame.value);
         }
 
-        RotationRepeaterWindow.show();
-    }
+        if ( RotationRepeaterWindow instanceof Window ) RotationRepeaterWindow.show();
+        //return RotationRepeaterWindow;
+    //}
     
     //Rotation Repeater function
     function rotationRepe(value1, value2, frequency, keyStatusIsHold){
         app.beginUndoGroup("Rotation Repeater");
         
-        var selected = app.project.activeItem.selectedProperties;
-        /*
-        var value1 = -5; //获得keyframe1的数值
-        var value2 = 5; //获得keyframe2的数值
-        var frequency = 0.5; //获得重复间隔（单位：秒）
-        */
+        var selected = app.project.activeItem.selectedProperties; //获得所有选择的属性
+        
         var time = app.project.activeItem.time; //获取当前时间
+        var fps = app.project.activeItem.frameRate; //获取FPS
+        var timeFrequency = frequency / fps; //获得间隔秒数
 
         //alert("length = "+ selected.length + "time ="+ time);
         //alert("val1: "+ key1Val + "\nVal2: "+ key2Val + "\nFreq: "+ freq1);
         //alert(localize('%1\n%2\n%3', value1, value2, frequency));
-        alert(keyStatusIsHold);
+        //alert(keyStatusIsHold);
+
+        if(selected.length == 0){
+            alert("没有选择属性！");
+            return
+        }
+
+        if(frequency < 1){
+            alert("间隔帧数最少为 1 ");
+            return
+        }
 
         //支持多选properties
         for(var i=0; i < selected.length; i++){
@@ -155,10 +157,10 @@
             var key1 = selected[i].addKey(time);
             selected[i].setValueAtKey(key1, value1);
 
-            var key2 = selected[i].addKey(time+frequency);
+            var key2 = selected[i].addKey(time+timeFrequency);
             selected[i].setValueAtKey(key2, value2);
 
-            var key3 = selected[i].addKey(time+frequency*2);
+            var key3 = selected[i].addKey(time+timeFrequency*2);
             selected[i].setValueAtKey(key3, value1);
 
             if(keyStatusIsHold == true){
