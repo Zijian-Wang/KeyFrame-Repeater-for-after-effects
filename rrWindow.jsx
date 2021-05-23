@@ -17,16 +17,16 @@ var RotationRepeaterWindow = (panelGlobal instanceof Panel) ? panelGlobal : new 
 
 // ROTATIONREPEATE
 // ===============
-var RotationRepeate = RotationRepeaterWindow.add("panel", undefined, undefined, {name: "RotationRepeate", su1PanelCoordinates: true}); 
-    RotationRepeate.text = "Rotation Repeat （重复旋转关键帧）"; 
-    RotationRepeate.orientation = "row"; 
-    RotationRepeate.alignChildren = ["left","top"]; 
-    RotationRepeate.spacing = 40; 
-    RotationRepeate.margins = 10; 
+var RotationRepeaterWindow = RotationRepeaterWindow.add("panel", undefined, undefined, {name: "RotationRepeate", su1PanelCoordinates: true}); 
+    RotationRepeaterWindow.text = "Rotation Repeat （重复旋转关键帧）"; 
+    RotationRepeaterWindow.orientation = "row"; 
+    RotationRepeaterWindow.alignChildren = ["left","top"]; 
+    RotationRepeaterWindow.spacing = 40; 
+    RotationRepeaterWindow.margins = 10; 
 
 // KEY1
 // ====
-var key1 = RotationRepeate.add("group", undefined, {name: "key1"}); 
+var key1 = RotationRepeaterWindow.add("group", undefined, {name: "key1"}); 
     key1.orientation = "row"; 
     key1.alignChildren = ["left","center"]; 
     key1.spacing = 10; 
@@ -44,7 +44,7 @@ var key1Val = key1.add('edittext {properties: {name: "key1Val"}}');
 
 // KEY2
 // ====
-var key2 = RotationRepeate.add("group", undefined, {name: "key2"}); 
+var key2 = RotationRepeaterWindow.add("group", undefined, {name: "key2"}); 
     key2.orientation = "row"; 
     key2.alignChildren = ["left","center"]; 
     key2.spacing = 10; 
@@ -62,7 +62,7 @@ var key2Val = key2.add('edittext {properties: {name: "key2Val"}}');
 
 // FREQ
 // ====
-var freq = RotationRepeate.add("group", undefined, {name: "freq"}); 
+var freq = RotationRepeaterWindow.add("group", undefined, {name: "freq"}); 
     freq.orientation = "row"; 
     freq.alignChildren = ["center","center"]; 
     freq.spacing = 10; 
@@ -80,7 +80,7 @@ var freq1 = freq.add('edittext {properties: {name: "freq1"}}');
 
 // ROTATIONREPEATE
 // ===============
-var holdFrame = RotationRepeate.add("checkbox", undefined, undefined, {name: "holdFrame"}); 
+var holdFrame = RotationRepeaterWindow.add("checkbox", undefined, undefined, {name: "holdFrame"}); 
     holdFrame.text = "Hold Keyframe"; 
     holdFrame.alignment = ["left","center"]; 
 
@@ -97,7 +97,7 @@ RotationRepeaterWindow.onResizing = RotationRepeaterWindow.onResize = function (
 // ITEM REFERENCE LIST ( Info: http://jongware.mit.edu/Sui/index_1.html ) 
 RotationRepeaterWindow.items = { 
   RotationRepeaterWindow: RotationRepeaterWindow, // palette
-  RotationRepeate: RotationRepeate, // panel
+  RotationRepeate: RotationRepeaterWindow, // panel
   key1: key1, // group
   key1Val: key1Val, // edittext
   key2: key2, // group
@@ -107,4 +107,4 @@ RotationRepeaterWindow.items = {
   holdFrame: holdFrame, // checkbox
   applyBttn: applyBttn // button
 };
-RotationRepeaterWindow.itemsArray = [RotationRepeaterWindow, RotationRepeate, key1, key1Val, key2, key2Val, freq, freq1, holdFrame, applyBttn];
+RotationRepeaterWindow.itemsArray = [RotationRepeaterWindow, RotationRepeaterWindow, key1, key1Val, key2, key2Val, freq, freq1, holdFrame, applyBttn];

@@ -169,7 +169,7 @@
                 selected[i].setInterpolationTypeAtKey(key3, KeyframeInterpolationType.HOLD);
             }
 
-            selected[i].expression += 'loopOut(type = "cycle", numKeyframes = 0)';
+            selected[i].expression = 'loopOut(type = "cycle", numKeyframes = 0)';
         }
 
         app.endUndoGroup();
