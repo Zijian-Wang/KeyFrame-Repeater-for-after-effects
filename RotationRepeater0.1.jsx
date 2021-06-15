@@ -144,8 +144,8 @@
 
         //删除旧keyframe
         try {
-            for (numkey = 1, numkey <= selected.numKeys(), numkey+=1) {
-                selected.removeKey(numkey);
+            for (keyIndex = 1; keyIndex <= selected.numKeys; keyIndex++){
+                selected.removeKey(keyIndex);
             }
         }catch(err){
             alert(err);
