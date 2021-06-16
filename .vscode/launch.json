@@ -7,8 +7,8 @@
         {
             "type": "extendscript-debug",
             "request": "launch",
-            "name": "RotationRepeater Debug",
-            "program": "${workspaceFolder}/RotationRepeater0.1.jsx",
+            "name": "Key Frame Repeater Debug",
+            "program": "${workspaceFolder}/Key Frame Repeater.jsx",
             "stopOnEntry": false
         }
     ]

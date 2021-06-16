@@ -1,11 +1,11 @@
 # Key-Frame-Repeater-for-after-effects
 
-Key Frame Repeater 是一个 After Effects 的脚本，由 Zijian 开发并维护。
-Key Frame Repeater is an After Effects script developed and maintained by Zijian. 
+- Key Frame Repeater 是一个 After Effects 的脚本，由 Zijian 开发并维护。
+- Key Frame Repeater is an After Effects script developed and maintained by Zijian. 
 
 # 功能 | Usage ：
-选择一个或多个的图层属性（如 旋转、透明度、大小）并且输入两个数字变量以及改变的时间，可以自动生成一个 loopOut 语句以及关键帧，节省了一定的重复工作时间，帮助提高制作简单的重复动画的效率。
-With a selection of one or multiple layer properties (eg. Rotation/Transparency/Scale) and enter two numeric values with a delta frame time, this script can create a looping animation. The script is designed to help shortern the time for creating simple looping animation. 
+- 选择一个或多个的图层属性（如 旋转、透明度、大小）并且输入两个数字变量以及改变的时间，可以自动生成一个 loopOut 语句以及关键帧，节省了一定的重复工作时间，帮助提高制作简单的重复动画的效率。
+- With a selection of one or multiple layer properties (eg. Rotation/Transparency/Scale) and enter two numeric values with a delta frame time, this script can create a looping animation. The script is designed to help shorten the time for creating simple looping animation. 
 
 # 更新日志 | Change Log  2021/06/16
 - 增加了对二维属性修改的支持 | Added support for two demensional properties.

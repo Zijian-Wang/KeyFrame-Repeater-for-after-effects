@@ -25,12 +25,12 @@
             key1.margins = 0; 
 
         var statictext1 = key1.add("statictext", undefined, undefined, {name: "statictext1"}); 
-            statictext1.text = "首尾帧数值: "; 
-            statictext1.helpTip = "第一关键帧数值"; 
+            statictext1.text = "数值 1 | Value 1: "; 
+            statictext1.helpTip = "首尾关键帧数值 | Value for first and last keyframe"; 
             statictext1.alignment = ["left","fill"]; 
 
         var key1Val = key1.add('edittext {properties: {name: "key1Val"}}'); 
-            key1Val.helpTip = "第一关键帧数值"; 
+            key1Val.helpTip = statictext1.helpTip; 
             key1Val.text = "-5"; 
             key1Val.preferredSize.width = 50; 
             key1Val.alignment = ["left","fill"]; 
@@ -44,12 +44,12 @@
             key2.margins = 0; 
 
         var statictext2 = key2.add("statictext", undefined, undefined, {name: "statictext2"}); 
-            statictext2.text = "中间帧数值: "; 
-            statictext2.helpTip = "中间关键帧数值"; 
+            statictext2.text = "数值 2 | Value 2: "; 
+            statictext2.helpTip = "中间关键帧数值 | Value for middle keyframe"; 
             statictext2.alignment = ["left","fill"]; 
 
         var key2Val = key2.add('edittext {properties: {name: "key2Val"}}'); 
-            key2Val.helpTip = "中间关键帧数值"; 
+            key2Val.helpTip = statictext2.helpTip; 
             key2Val.text = "5"; 
             key2Val.preferredSize.width = 50; 
             key2Val.alignment = ["left","fill"]; 
@@ -63,12 +63,12 @@
             freq.margins = 0; 
 
         var statictext3 = freq.add("statictext", undefined, undefined, {name: "statictext3"}); 
-            statictext3.helpTip = "频率（按帧数计算）"; 
-            statictext3.text = "频率（帧）: "; 
+            statictext3.helpTip = "频率（按帧数计算） | Frequency in Frames"; 
+            statictext3.text = "频率 | Freqency: "; 
             statictext3.alignment = ["center","fill"]; 
 
         var freq1 = freq.add('edittext {properties: {name: "freq1"}}'); 
-            freq1.text = "1"; 
+            freq1.text = "10"; 
             freq1.preferredSize.width = 50; 
             freq1.alignment = ["center","fill"]; 
 
